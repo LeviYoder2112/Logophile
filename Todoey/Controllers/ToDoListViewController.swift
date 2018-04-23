@@ -90,8 +90,10 @@ if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
                 do {
                     try self.realm.write {
                 let newItem = Item()
+                newItem.dateCreated = Date()
                 newItem.title = textField.text!
    currentCategory.items.append(newItem)
+                        print(newItem.dateCreated)
             }
                 } catch{
                     print("Error saving new items")
@@ -118,5 +120,19 @@ toDoItems = selectedCategory?.items.sorted(byKeyPath: "title", ascending: true)
 // MARK: - Search bar Methods
 
 extension ToDoListViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        toDoItems = toDoItems?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "dateCreated", ascending: true)
     
+    tableView.reloadData()
+   
+    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            loadItems()
+            
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+        }
+    }
 }

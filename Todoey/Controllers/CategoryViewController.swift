@@ -13,14 +13,12 @@ let realm = try! Realm()
 
 var categories: Results<Category>?
 
-let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Categories.plist")
-
 class CategoryViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
     loadCategories()
-        
+       
     }
     
     
@@ -103,6 +101,8 @@ textField.placeholder = "Add new category"
     }
 
 }
+
+
 
 
 
