@@ -15,11 +15,11 @@ class ToDoListViewController: UITableViewController{
     
     var selectedCategory : Category? {
         didSet{
-            loadItems()
+            loadWords()
         }
     }
     
-    var toDoItems: Results<Item>?
+    var toDoWords: Results<Word>?
     
     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
     
@@ -35,18 +35,15 @@ class ToDoListViewController: UITableViewController{
  
     //MARK: - Tableview Datasource Methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return toDoItems?.count ?? 1
+       return toDoWords?.count ?? 1
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WordCell", for: indexPath)
        
-        if let item = toDoItems?[indexPath.row] {
+        if let word = toDoWords?[indexPath.row] {
            
-            cell.textLabel?.text = item.title
-            
-            cell.accessoryType = item.done == true ? .checkmark : .none
-        } else {
+            cell.textLabel?.text = word.title        } else {
             cell.textLabel?.text = "No Items Added"
         }
         return cell
@@ -55,26 +52,20 @@ class ToDoListViewController: UITableViewController{
     //MARK: - Tableview Delegate Methods
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-      
-        if let item = toDoItems?[indexPath.row] {
-            do {
-                try realm.write{
-                item.done = !item.done
-            }
-            } catch {
-                print("Error saving done status. \(error)")
-            }
-        }
-
-        
-if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
-            tableView.cellForRow(at: indexPath)?.accessoryType = .none
-        } else {
-            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
-        }
-        tableView.deselectRow(at: indexPath, animated: true)
-//        saveItems()
+     let word = toDoWords?[indexPath.row]
+        print(word?.title)
+        performSegue(withIdentifier: "viewWord", sender: self)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+        let destinationVC = segue.destination as! FlashCardViewController
+
+        if let indexPath = tableView.indexPathForSelectedRow {
+            destinationVC.selectedWord = toDoWords?[indexPath.row]
+        }
+    }
+
 
     
     //MARK: - Add New Items
@@ -89,12 +80,30 @@ if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
             if let currentCategory = self.selectedCategory{
                 do {
                     try self.realm.write {
-                let newItem = Item()
-                newItem.dateCreated = Date()
-                newItem.title = textField.text!
-   currentCategory.items.append(newItem)
-                        print(newItem.dateCreated)
-            }
+                
+                        let sentence = textField.text
+                        let wordList =  sentence?.components(separatedBy: .punctuationCharacters).joined().components(separatedBy: " ").filter{!$0.isEmpty}
+                        print(wordList?.count)
+                        var numberOfWords = wordList!.count
+                        if numberOfWords == 1 {
+                            let newWord = Word()
+                            newWord.dateCreated = Date()
+                            newWord.title = textField.text!
+                            currentCategory.words.append(newWord)
+                            print(newWord.dateCreated)
+                        } else {
+                            
+                            print("ONE word, jackass")
+        let alert2 = UIAlertController(title: "Oops!", message: "You can only add one word at a time to your list!", preferredStyle : .alert)
+
+                            alert2.addAction(UIAlertAction(title: "Okay!", style: .default, handler: nil))
+                            self.present(alert2, animated: true)
+        
+                            
+                        }
+                        }
+                        
+                    
                 } catch{
                     print("Error saving new items")
                 }
@@ -113,26 +122,27 @@ self.tableView.reloadData()
 
     // MARK: - Load/save methods
 
-    func loadItems(){
-toDoItems = selectedCategory?.items.sorted(byKeyPath: "title", ascending: true)
+    func loadWords(){
+toDoWords = selectedCategory?.words.sorted(byKeyPath: "title", ascending: true)
 }
 }
+
 // MARK: - Search bar Methods
 
-extension ToDoListViewController: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        toDoItems = toDoItems?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "dateCreated", ascending: true)
-    
-    tableView.reloadData()
-   
-    }
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchBar.text?.count == 0 {
-            loadItems()
-            
-            DispatchQueue.main.async {
-                searchBar.resignFirstResponder()
-            }
-        }
-    }
-}
+//extension ToDoListViewController: UISearchBarDelegate {
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//    toDoWords = toDoWords?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "dateCreated", ascending: true)
+//    
+//    tableView.reloadData()
+//   
+//    }
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        if searchBar.text?.count == 0 {
+//            loadWords()
+//            
+//            DispatchQueue.main.async {
+//                searchBar.resignFirstResponder()
+//            }
+//        }
+//    }
+//}

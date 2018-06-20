@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		DB5FC4F12089193B0008D2F1 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5FC4F02089193B0008D2F1 /* Item.swift */; };
 		DB5FC4F3208919420008D2F1 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5FC4F2208919420008D2F1 /* Category.swift */; };
+		DBABAE9520C88AB200D8CFD4 /* FlashCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBABAE9420C88AB200D8CFD4 /* FlashCardViewController.swift */; };
 		DBBEF5CC20868BF5000F2546 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBEF5CB20868BF5000F2546 /* CategoryViewController.swift */; };
 		DBE3CC1C207BCC6700E7409C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE3CC1B207BCC6700E7409C /* AppDelegate.swift */; };
 		DBE3CC1E207BCC6700E7409C /* ToDoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE3CC1D207BCC6700E7409C /* ToDoListViewController.swift */; };
@@ -43,18 +44,19 @@
 		AA5B803F9071FF569E4EE2A9 /* Pods-Todoey.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Todoey.release.xcconfig"; path = "Pods/Target Support Files/Pods-Todoey/Pods-Todoey.release.xcconfig"; sourceTree = "<group>"; };
 		DB5FC4F02089193B0008D2F1 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		DB5FC4F2208919420008D2F1 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		DBABAE9420C88AB200D8CFD4 /* FlashCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashCardViewController.swift; sourceTree = "<group>"; };
 		DBBEF5CB20868BF5000F2546 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
-		DBE3CC18207BCC6700E7409C /* Todoey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todoey.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBE3CC18207BCC6700E7409C /* Dictionary Flash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dictionary Flash.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBE3CC1B207BCC6700E7409C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DBE3CC1D207BCC6700E7409C /* ToDoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListViewController.swift; sourceTree = "<group>"; };
 		DBE3CC20207BCC6700E7409C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DBE3CC22207BCC6700E7409C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DBE3CC25207BCC6700E7409C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DBE3CC27207BCC6700E7409C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DBE3CC2C207BCC6700E7409C /* TodoeyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoeyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBE3CC2C207BCC6700E7409C /* Dictionary FlashTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Dictionary FlashTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBE3CC30207BCC6700E7409C /* TodoeyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoeyTests.swift; sourceTree = "<group>"; };
 		DBE3CC32207BCC6700E7409C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DBE3CC37207BCC6700E7409C /* TodoeyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TodoeyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBE3CC37207BCC6700E7409C /* Dictionary FlashUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Dictionary FlashUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBE3CC3B207BCC6700E7409C /* TodoeyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoeyUITests.swift; sourceTree = "<group>"; };
 		DBE3CC3D207BCC6700E7409C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -107,6 +109,7 @@
 			children = (
 				DBBEF5CB20868BF5000F2546 /* CategoryViewController.swift */,
 				DBE3CC1D207BCC6700E7409C /* ToDoListViewController.swift */,
+				DBABAE9420C88AB200D8CFD4 /* FlashCardViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -114,7 +117,7 @@
 		DBE3CC0F207BCC6700E7409C = {
 			isa = PBXGroup;
 			children = (
-				DBE3CC1A207BCC6700E7409C /* Todoey */,
+				DBE3CC1A207BCC6700E7409C /* Dictionary Flash */,
 				DBE3CC2F207BCC6700E7409C /* TodoeyTests */,
 				DBE3CC3A207BCC6700E7409C /* TodoeyUITests */,
 				DBE3CC19207BCC6700E7409C /* Products */,
@@ -126,14 +129,14 @@
 		DBE3CC19207BCC6700E7409C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DBE3CC18207BCC6700E7409C /* Todoey.app */,
-				DBE3CC2C207BCC6700E7409C /* TodoeyTests.xctest */,
-				DBE3CC37207BCC6700E7409C /* TodoeyUITests.xctest */,
+				DBE3CC18207BCC6700E7409C /* Dictionary Flash.app */,
+				DBE3CC2C207BCC6700E7409C /* Dictionary FlashTests.xctest */,
+				DBE3CC37207BCC6700E7409C /* Dictionary FlashUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DBE3CC1A207BCC6700E7409C /* Todoey */ = {
+		DBE3CC1A207BCC6700E7409C /* Dictionary Flash */ = {
 			isa = PBXGroup;
 			children = (
 				DBBEF5CD20868C15000F2546 /* Controllers */,
@@ -143,6 +146,7 @@
 				DBE3CC4E207C3A9800E7409C /* Supporting Files */,
 				DBE3CC27207BCC6700E7409C /* Info.plist */,
 			);
+			name = "Dictionary Flash";
 			path = Todoey;
 			sourceTree = "<group>";
 		};
@@ -193,9 +197,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DBE3CC17207BCC6700E7409C /* Todoey */ = {
+		DBE3CC17207BCC6700E7409C /* Dictionary Flash */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DBE3CC40207BCC6700E7409C /* Build configuration list for PBXNativeTarget "Todoey" */;
+			buildConfigurationList = DBE3CC40207BCC6700E7409C /* Build configuration list for PBXNativeTarget "Dictionary Flash" */;
 			buildPhases = (
 				B57664B32A754AD5DA1F7B27 /* [CP] Check Pods Manifest.lock */,
 				DBE3CC14207BCC6700E7409C /* Sources */,
@@ -208,14 +212,14 @@
 			);
 			dependencies = (
 			);
-			name = Todoey;
+			name = "Dictionary Flash";
 			productName = Todoey;
-			productReference = DBE3CC18207BCC6700E7409C /* Todoey.app */;
+			productReference = DBE3CC18207BCC6700E7409C /* Dictionary Flash.app */;
 			productType = "com.apple.product-type.application";
 		};
-		DBE3CC2B207BCC6700E7409C /* TodoeyTests */ = {
+		DBE3CC2B207BCC6700E7409C /* Dictionary FlashTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DBE3CC43207BCC6700E7409C /* Build configuration list for PBXNativeTarget "TodoeyTests" */;
+			buildConfigurationList = DBE3CC43207BCC6700E7409C /* Build configuration list for PBXNativeTarget "Dictionary FlashTests" */;
 			buildPhases = (
 				DBE3CC28207BCC6700E7409C /* Sources */,
 				DBE3CC29207BCC6700E7409C /* Frameworks */,
@@ -226,14 +230,14 @@
 			dependencies = (
 				DBE3CC2E207BCC6700E7409C /* PBXTargetDependency */,
 			);
-			name = TodoeyTests;
+			name = "Dictionary FlashTests";
 			productName = TodoeyTests;
-			productReference = DBE3CC2C207BCC6700E7409C /* TodoeyTests.xctest */;
+			productReference = DBE3CC2C207BCC6700E7409C /* Dictionary FlashTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		DBE3CC36207BCC6700E7409C /* TodoeyUITests */ = {
+		DBE3CC36207BCC6700E7409C /* Dictionary FlashUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DBE3CC46207BCC6700E7409C /* Build configuration list for PBXNativeTarget "TodoeyUITests" */;
+			buildConfigurationList = DBE3CC46207BCC6700E7409C /* Build configuration list for PBXNativeTarget "Dictionary FlashUITests" */;
 			buildPhases = (
 				DBE3CC33207BCC6700E7409C /* Sources */,
 				DBE3CC34207BCC6700E7409C /* Frameworks */,
@@ -244,9 +248,9 @@
 			dependencies = (
 				DBE3CC39207BCC6700E7409C /* PBXTargetDependency */,
 			);
-			name = TodoeyUITests;
+			name = "Dictionary FlashUITests";
 			productName = TodoeyUITests;
-			productReference = DBE3CC37207BCC6700E7409C /* TodoeyUITests.xctest */;
+			productReference = DBE3CC37207BCC6700E7409C /* Dictionary FlashUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -256,7 +260,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0910;
-				LastUpgradeCheck = 0910;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Levi Yoder";
 				TargetAttributes = {
 					DBE3CC17207BCC6700E7409C = {
@@ -275,7 +279,7 @@
 					};
 				};
 			};
-			buildConfigurationList = DBE3CC13207BCC6700E7409C /* Build configuration list for PBXProject "Todoey" */;
+			buildConfigurationList = DBE3CC13207BCC6700E7409C /* Build configuration list for PBXProject "Dictionary Flash" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -288,9 +292,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DBE3CC17207BCC6700E7409C /* Todoey */,
-				DBE3CC2B207BCC6700E7409C /* TodoeyTests */,
-				DBE3CC36207BCC6700E7409C /* TodoeyUITests */,
+				DBE3CC17207BCC6700E7409C /* Dictionary Flash */,
+				DBE3CC2B207BCC6700E7409C /* Dictionary FlashTests */,
+				DBE3CC36207BCC6700E7409C /* Dictionary FlashUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -386,6 +390,7 @@
 				DB5FC4F12089193B0008D2F1 /* Item.swift in Sources */,
 				DBBEF5CC20868BF5000F2546 /* CategoryViewController.swift in Sources */,
 				DBE3CC1E207BCC6700E7409C /* ToDoListViewController.swift in Sources */,
+				DBABAE9520C88AB200D8CFD4 /* FlashCardViewController.swift in Sources */,
 				DBE3CC1C207BCC6700E7409C /* AppDelegate.swift in Sources */,
 				DB5FC4F3208919420008D2F1 /* Category.swift in Sources */,
 			);
@@ -412,12 +417,12 @@
 /* Begin PBXTargetDependency section */
 		DBE3CC2E207BCC6700E7409C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DBE3CC17207BCC6700E7409C /* Todoey */;
+			target = DBE3CC17207BCC6700E7409C /* Dictionary Flash */;
 			targetProxy = DBE3CC2D207BCC6700E7409C /* PBXContainerItemProxy */;
 		};
 		DBE3CC39207BCC6700E7409C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DBE3CC17207BCC6700E7409C /* Todoey */;
+			target = DBE3CC17207BCC6700E7409C /* Dictionary Flash */;
 			targetProxy = DBE3CC38207BCC6700E7409C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -456,6 +461,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -463,6 +469,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -513,6 +520,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -520,6 +528,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -591,7 +600,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Todoey.app/Todoey";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dictionary Flash.app/Dictionary Flash";
 			};
 			name = Debug;
 		};
@@ -607,7 +616,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Todoey.app/Todoey";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Dictionary Flash.app/Dictionary Flash";
 			};
 			name = Release;
 		};
@@ -644,7 +653,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DBE3CC13207BCC6700E7409C /* Build configuration list for PBXProject "Todoey" */ = {
+		DBE3CC13207BCC6700E7409C /* Build configuration list for PBXProject "Dictionary Flash" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DBE3CC3E207BCC6700E7409C /* Debug */,
@@ -653,7 +662,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DBE3CC40207BCC6700E7409C /* Build configuration list for PBXNativeTarget "Todoey" */ = {
+		DBE3CC40207BCC6700E7409C /* Build configuration list for PBXNativeTarget "Dictionary Flash" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DBE3CC41207BCC6700E7409C /* Debug */,
@@ -662,7 +671,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DBE3CC43207BCC6700E7409C /* Build configuration list for PBXNativeTarget "TodoeyTests" */ = {
+		DBE3CC43207BCC6700E7409C /* Build configuration list for PBXNativeTarget "Dictionary FlashTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DBE3CC44207BCC6700E7409C /* Debug */,
@@ -671,7 +680,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DBE3CC46207BCC6700E7409C /* Build configuration list for PBXNativeTarget "TodoeyUITests" */ = {
+		DBE3CC46207BCC6700E7409C /* Build configuration list for PBXNativeTarget "Dictionary FlashUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DBE3CC47207BCC6700E7409C /* Debug */,

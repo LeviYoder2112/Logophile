@@ -99,9 +99,29 @@ textField.placeholder = "Add new category"
     present(alert, animated: true, completion: nil)
     tableView.reloadData()
     }
+    }
 
+
+
+// MARK: - Search bar Methods
+
+extension ToDoListViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked1(_ searchBar: UISearchBar) {
+        toDoWords = toDoWords?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "dateCreated", ascending: true)
+        
+        tableView.reloadData()
+        
+    }
+    func searchBar1(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            loadWords()
+            
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+        }
+    }
 }
-
 
 
 
