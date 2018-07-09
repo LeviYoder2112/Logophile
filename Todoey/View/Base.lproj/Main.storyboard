@@ -26,7 +26,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryCell" id="7II-po-Chp">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="7II-po-Chp" customClass="SwipeTableViewCell" customModule="SwipeCellKit">
                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7II-po-Chp" id="caC-2j-SIx">
@@ -73,10 +73,10 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WordCell" id="b9U-rf-UYC">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="mSa-h0-4EX" customClass="SwipeTableViewCell" customModule="SwipeCellKit">
                                 <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="b9U-rf-UYC" id="2Mf-bI-M36">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mSa-h0-4EX" id="Lwj-29-Bn7">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
@@ -87,6 +87,13 @@
                             <outlet property="delegate" destination="rlx-Nw-tkt" id="fXh-Nd-WtN"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem title="Quiz Yourself!" width="373" springLoaded="YES" style="done" id="emz-gA-C4l">
+                            <connections>
+                                <segue destination="faE-a2-H3g" kind="show" identifier="quizSegue" id="mNI-xs-GRD"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Items" id="PK5-1w-hd8">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="LrT-KM-qQM">
                             <color key="tintColor" red="0.57874745130000005" green="0.32151988149999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -95,6 +102,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="VjX-zG-p0m" kind="show" identifier="viewWord" id="L7Y-Af-mhi"/>
                     </connections>
@@ -102,6 +110,88 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fE1-Zt-K1S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2156" y="171"/>
+        </scene>
+        <!--Quiz View Controller-->
+        <scene sceneID="7cA-1n-Wwk">
+            <objects>
+                <viewController id="faE-a2-H3g" customClass="QuizViewController" customModule="Dictionary_Flash" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ylP-wK-cIN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="r1j-XW-GfE">
+                                <rect key="frame" x="0.0" y="258" width="375" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="dwB-FC-Ja0"/>
+                                </constraints>
+                                <state key="normal">
+                                    <string key="title">[
+  "a three-dimensional representation of a person or thing or of a proposed structure, typically on a smaller scale than the original"
+]</string>
+                                    <color key="titleShadowColor" red="1" green="0.83137254900000002" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="eCB-Dv-eXi">
+                                <rect key="frame" x="0.0" y="356" width="375" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="Ba6-Rl-uoX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal">
+                                    <string key="title">[
+  "a three-dimensional representation of a person or thing or of a proposed structure, typically on a smaller scale than the original"
+]</string>
+                                    <color key="titleShadowColor" red="1" green="0.83234566450000003" blue="0.47320586440000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1A3-mN-lr9">
+                                <rect key="frame" x="0.0" y="160" width="375" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="vRo-lJ-xqY">
+                                <rect key="frame" x="0.0" y="454" width="375" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="iA4-jy-GSl"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal">
+                                    <string key="title">[
+  "a three-dimensional representation of a person or 
+]</string>
+                                    <color key="titleShadowColor" red="1" green="0.83234566450000003" blue="0.47320586440000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="r1j-XW-GfE" firstAttribute="top" secondItem="1A3-mN-lr9" secondAttribute="bottom" constant="56" id="27K-q0-dMy"/>
+                            <constraint firstItem="eCB-Dv-eXi" firstAttribute="leading" secondItem="EFR-uK-enQ" secondAttribute="leading" id="Bu9-13-Y9V"/>
+                            <constraint firstItem="eCB-Dv-eXi" firstAttribute="trailing" secondItem="EFR-uK-enQ" secondAttribute="trailing" id="Hgj-kr-3Lb"/>
+                            <constraint firstItem="r1j-XW-GfE" firstAttribute="leading" secondItem="EFR-uK-enQ" secondAttribute="leading" id="Kpo-DL-G8H"/>
+                            <constraint firstItem="r1j-XW-GfE" firstAttribute="trailing" secondItem="EFR-uK-enQ" secondAttribute="trailing" id="Pme-Vc-gWn"/>
+                            <constraint firstItem="1A3-mN-lr9" firstAttribute="leading" secondItem="EFR-uK-enQ" secondAttribute="leading" id="SYX-RY-wAZ"/>
+                            <constraint firstItem="vRo-lJ-xqY" firstAttribute="leading" secondItem="EFR-uK-enQ" secondAttribute="leading" id="a4I-kz-MQG"/>
+                            <constraint firstItem="eCB-Dv-eXi" firstAttribute="top" secondItem="r1j-XW-GfE" secondAttribute="bottom" constant="8" id="hzc-B0-hK7"/>
+                            <constraint firstItem="1A3-mN-lr9" firstAttribute="top" secondItem="EFR-uK-enQ" secondAttribute="top" constant="96" id="lSd-zd-f6F"/>
+                            <constraint firstItem="1A3-mN-lr9" firstAttribute="trailing" secondItem="EFR-uK-enQ" secondAttribute="trailing" id="pkD-LA-eGl"/>
+                            <constraint firstItem="vRo-lJ-xqY" firstAttribute="top" secondItem="eCB-Dv-eXi" secondAttribute="bottom" constant="8" id="tME-aj-XUh"/>
+                            <constraint firstItem="vRo-lJ-xqY" firstAttribute="top" secondItem="eCB-Dv-eXi" secondAttribute="bottom" constant="8" id="yYy-5Z-qRD"/>
+                            <constraint firstItem="vRo-lJ-xqY" firstAttribute="trailing" secondItem="EFR-uK-enQ" secondAttribute="trailing" id="zJI-kV-bwS"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="EFR-uK-enQ"/>
+                    </view>
+                    <connections>
+                        <outlet property="option1" destination="r1j-XW-GfE" id="4a8-8t-JyX"/>
+                        <outlet property="option2" destination="eCB-Dv-eXi" id="ygS-du-WC5"/>
+                        <outlet property="option3" destination="vRo-lJ-xqY" id="xKx-ND-fCi"/>
+                        <outlet property="quizWordLabel" destination="1A3-mN-lr9" id="5AR-1S-zph"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QLo-5J-R9C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2156" y="1053.8230884557722"/>
         </scene>
         <!--Flash Card View Controller-->
         <scene sceneID="9tR-jn-K1E">
@@ -118,10 +208,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="294" translatesAutoresizingMaskIntoConstraints="NO" id="udt-M3-aWs">
-                                <rect key="frame" x="0.0" y="177" width="375" height="313"/>
+                                <rect key="frame" x="0.0" y="221" width="375" height="225"/>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="f5b-hn-2n9">
-                                <rect key="frame" x="46" y="242" width="282" height="182"/>
+                                <rect key="frame" x="46" y="286" width="282" height="94"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>

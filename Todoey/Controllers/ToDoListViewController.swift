@@ -9,8 +9,22 @@
 import UIKit
 import RealmSwift
 
-class ToDoListViewController: UITableViewController{
+class ToDoListViewController: SwipeTableViewController{
    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "viewWord" {
+         let destinationVC = segue.destination as! FlashCardViewController
+                    if let indexPath = tableView.indexPathForSelectedRow {
+                        destinationVC.selectedWord = toDoWords?[indexPath.row]
+                    }
+        } else if segue.identifier == "quizSegue" {
+        let destinationVC = segue.destination as! QuizViewController
+        destinationVC.chosenCategory = selectedCategory
+        }}
+
+    
     let realm = try! Realm()
     
     var selectedCategory : Category? {
@@ -25,8 +39,9 @@ class ToDoListViewController: UITableViewController{
     
     override func viewDidLoad() {
          super.viewDidLoad()
-        
-        }
+         tableView.rowHeight = 80.0
+        self.navigationController?.isToolbarHidden = false
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -39,7 +54,8 @@ class ToDoListViewController: UITableViewController{
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "WordCell", for: indexPath)
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        
        
         if let word = toDoWords?[indexPath.row] {
            
@@ -57,14 +73,6 @@ class ToDoListViewController: UITableViewController{
         performSegue(withIdentifier: "viewWord", sender: self)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
-        let destinationVC = segue.destination as! FlashCardViewController
-
-        if let indexPath = tableView.indexPathForSelectedRow {
-            destinationVC.selectedWord = toDoWords?[indexPath.row]
-        }
-    }
 
 
     
@@ -86,6 +94,10 @@ class ToDoListViewController: UITableViewController{
                         print(wordList?.count)
                         var numberOfWords = wordList!.count
                         if numberOfWords == 1 {
+                            
+                            
+                            
+                            
                             let newWord = Word()
                             newWord.dateCreated = Date()
                             newWord.title = textField.text!
@@ -93,7 +105,7 @@ class ToDoListViewController: UITableViewController{
                             print(newWord.dateCreated)
                         } else {
                             
-                            print("ONE word, jackass")
+                           
         let alert2 = UIAlertController(title: "Oops!", message: "You can only add one word at a time to your list!", preferredStyle : .alert)
 
                             alert2.addAction(UIAlertAction(title: "Okay!", style: .default, handler: nil))
@@ -120,29 +132,51 @@ self.tableView.reloadData()
         present(alert, animated: true, completion: nil)
     }
 
-    // MARK: - Load/save methods
+    // MARK: - Data Manipulation
 
     func loadWords(){
-toDoWords = selectedCategory?.words.sorted(byKeyPath: "title", ascending: true)
+toDoWords = selectedCategory?.words.sorted(byKeyPath: "dateCreated", ascending: true)
 }
+
+    override func updateModel(at indexPath: IndexPath) {
+        if let wordsForDeletion = toDoWords?[indexPath.row] {
+            
+            do {
+                try realm.write {
+                    realm.delete(wordsForDeletion)
+                }
+            } catch {
+                print("Error deleting category, \(error)")
+            }
+            
+            tableView.reloadData()
+            
+        }
+    }
+
+    
+        
+    
 }
+
 
 // MARK: - Search bar Methods
 
 //extension ToDoListViewController: UISearchBarDelegate {
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//    toDoWords = toDoWords?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "dateCreated", ascending: true)
-//    
-//    tableView.reloadData()
-//   
+//    func searchBarSearchButtonClicked1(_ searchBar: UISearchBar) {
+//        toDoWords = toDoWords?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "dateCreated", ascending: true)
+//
+//        tableView.reloadData()
+//
 //    }
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//    func searchBar1(_ searchBar: UISearchBar, textDidChange searchText: String) {
 //        if searchBar.text?.count == 0 {
 //            loadWords()
-//            
+//
 //            DispatchQueue.main.async {
 //                searchBar.resignFirstResponder()
 //            }
 //        }
 //    }
 //}
+
