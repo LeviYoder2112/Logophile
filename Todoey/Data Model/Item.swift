@@ -14,6 +14,8 @@ class Word: Object {
     @objc dynamic var title: String = ""
     @objc dynamic var timesCorrect: Int = 0
     @objc dynamic var definition: String = ""
+  @objc dynamic var category: String = ""
+    @objc dynamic var hasBeenQuizzed : Bool = false
+    var parentCategory = LinkingObjects(fromType: Category.self, property: "words")
     
-var parentCategory = LinkingObjects(fromType: Category.self, property: "words")
 }

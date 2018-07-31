@@ -102,7 +102,7 @@ class ToDoListViewController: SwipeTableViewController{
                             newWord.dateCreated = Date()
                             newWord.title = textField.text!
                             currentCategory.words.append(newWord)
-                            print(newWord.dateCreated)
+                            newWord.category = currentCategory.name
                         } else {
                             
                            
@@ -136,7 +136,8 @@ self.tableView.reloadData()
 
     func loadWords(){
 toDoWords = selectedCategory?.words.sorted(byKeyPath: "dateCreated", ascending: true)
-}
+    
+    }
 
     override func updateModel(at indexPath: IndexPath) {
         if let wordsForDeletion = toDoWords?[indexPath.row] {
