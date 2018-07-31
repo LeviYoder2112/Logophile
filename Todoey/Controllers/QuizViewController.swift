@@ -11,13 +11,12 @@ import RealmSwift
 import SwiftyJSON
 
 class QuizViewController : UIViewController {
-    
-    @IBOutlet weak var quizWordLabel: UILabel!
-    var count = 0
-    var numberCorrect = 0
     var randomIndex1 = 0
     var randomIndex2 = 0
     var randomIndex3 = 0
+    @IBOutlet weak var quizWordLabel: UILabel!
+    var count = 0
+    var numberCorrect = 0
     var categoryName = ""
     var randomNumber = 0
     var wordsArray = realm.objects(Word.self)
@@ -36,7 +35,7 @@ class QuizViewController : UIViewController {
         
         updateDisplay()
        setTitles()
-resetHasBeenQuizzed()
+
     }
    
     
@@ -47,46 +46,35 @@ resetHasBeenQuizzed()
     
     
     func updateDisplay() {
+        resetHasBeenQuizzed()
      randomNumber = Int(arc4random_uniform(3))
    // let predicate = NSPredicate(format: "color = %@ AND name BEGINSWITH %@", "tan", "B")
         let predicate = NSPredicate(format: "category = %@ AND hasBeenQuizzed == %@", categoryName, NSNumber(value: false))
         wordPool = realm.objects(Word.self).filter(predicate).sorted(byKeyPath: "title", ascending: true)
    
     //Picking 3 random (and not repeating)word definitions to display
-    count = wordPool.count
-    randomIndex1 = Int(arc4random_uniform(UInt32(count)))
-            randomIndex2 = Int(arc4random_uniform(UInt32(count)))
-           randomIndex3 = Int(arc4random_uniform(UInt32(count)))
-        repeat {
-            randomIndex2 = Int(arc4random_uniform(UInt32(count)))
-        } while randomIndex2 == randomIndex1 || randomIndex2 == randomIndex3
-        repeat {
-            randomIndex3 = Int(arc4random_uniform(UInt32(count)))
-        } while randomIndex3 == randomIndex2 || randomIndex3 == randomIndex1
-   
+    count = (wordPool.count) - 1
+  
+  
+        (randomIndex1, randomIndex2, randomIndex3) = self.assignRandomIndex(count: count)
+        print("update display random index 1 is \(randomIndex1)")
+     print("update display random index 2 is \(randomIndex2)")
+        print("update display random index 3 is \(randomIndex3)")
         
-        let quizWord1 = wordPool[randomIndex1]
-    let quizWord2 = wordPool[randomIndex2]
-    let quizWord3 = wordPool[randomIndex3]
+let (quizWord1, quizWord2, quizWord3) = self.getQuizWords(wordpool: wordPool, randomIndex1: randomIndex1, randomIndex2: randomIndex2, randomIndex3: randomIndex3)
     
             self.quizWordLabel.text = quizWord1.title
       
         
         if quizWord1.definition == "" {
-                self.getDefinition(word: (quizWord1.title), randomIndex: self.randomIndex1)}
+                self.getDefinition(word: (quizWord1.title), randomIndex: randomIndex1)}
            
             if quizWord2.definition == "" {
-                self.getDefinition(word: (quizWord2.title), randomIndex: self.randomIndex2)}
+                self.getDefinition(word: (quizWord2.title), randomIndex: randomIndex2)}
        
             if quizWord3.definition == "" {
-                self.getDefinition(word: (quizWord3.title), randomIndex: self.randomIndex3)}
-           
-
-       
-        
-        
-      
-      
+                self.getDefinition(word: (quizWord3.title), randomIndex: randomIndex3)}
+    
         setTitles()
     
     }
@@ -163,6 +151,10 @@ let definitionResult = json["results"][0]["lexicalEntries"][0]["entries"][0]["se
                 option2.setTitle(wordPool[randomIndex3].definition, for: .normal)
                 option3.setTitle(wordPool[randomIndex1].definition, for: .normal)
             }
+   
+        
+        
+    
     }
     
     func resetHasBeenQuizzed(){
@@ -175,20 +167,50 @@ let definitionResult = json["results"][0]["lexicalEntries"][0]["entries"][0]["se
                 print("unable to update hasBeenQuizzed\(error)")
         }
     }
+    
+    
+    
+    func assignRandomIndex(count: Int) -> (Int, Int, Int) {
+       
+        randomIndex1 = Int(arc4random_uniform(UInt32(count)))
+        randomIndex2 = Int(arc4random_uniform(UInt32(count)))
+        randomIndex3 = Int(arc4random_uniform(UInt32(count)))
+        repeat {
+            randomIndex2 = Int(arc4random_uniform(UInt32(count)))
+        } while randomIndex2 == randomIndex1 || randomIndex2 == randomIndex3
+        repeat {
+            randomIndex3 = Int(arc4random_uniform(UInt32(count)))
+        } while randomIndex3 == randomIndex2 || randomIndex3 == randomIndex1
+        print("assignRandomIndex randomindex1 is \(randomIndex1)")
+        print("assignRandomIndex randomindex2 is \(randomIndex2)")
+        print("assignRandomIndex randomindex3 is \(randomIndex3)")
+    return ( randomIndex1, randomIndex2, randomIndex3)
+    }
+    
+    func getQuizWords(wordpool: Results<Word>, randomIndex1: Int, randomIndex2: Int, randomIndex3: Int)-> (Word, Word, Word){
+        let quizWord1 = wordPool[randomIndex1]
+        let quizWord2 = wordPool[randomIndex2]
+        let quizWord3 = wordPool[randomIndex3]
+        
+        return (quizWord1, quizWord2, quizWord3)
+    }
 
     //buttons have been pressed!
     
     @IBAction func option1pressed(_ sender: UIButton) {
-      
+      updateDisplay()
+        setTitles()
     }
     
     @IBAction func option2pressed(_ sender: UIButton) {
-        
+        updateDisplay()
+        setTitles()
        
     }
     
     @IBAction func option3pressed(_ sender: UIButton) {
-      
+        updateDisplay()
+        setTitles()
     }
     @IBOutlet weak var option1: UIButton!
     
