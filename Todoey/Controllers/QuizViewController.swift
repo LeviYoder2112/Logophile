@@ -54,7 +54,7 @@ class QuizViewController : UIViewController {
    
     //Picking 3 random (and not repeating)word definitions to display
     count = (wordPool.count) - 1
-  
+  print("count is \(count)")
   
         (randomIndex1, randomIndex2, randomIndex3) = self.assignRandomIndex(count: count)
         print("update display random index 1 is \(randomIndex1)")
