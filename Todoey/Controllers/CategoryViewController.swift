@@ -102,7 +102,8 @@ let cell = super.tableView(tableView, cellForRowAt: indexPath)
     let alert = UIAlertController(title: "Add New Category", message : "", preferredStyle : .alert)
     
     let action = UIAlertAction(title: "Add", style: .default){ (action) in
-        
+     
+       
         let newCategory = Category()
        
         newCategory.name = textField.text!
@@ -110,7 +111,8 @@ let cell = super.tableView(tableView, cellForRowAt: indexPath)
         }
 
     alert.addAction(action)
-    
+       let action2 = UIAlertAction(title: "Cancel", style: .cancel)
+    alert.addAction(action2)
     alert.addTextField { (field) in
         textField = field
 textField.placeholder = "Add new category"

@@ -20,7 +20,8 @@ class QuizViewController : UIViewController {
     @IBOutlet weak var quizWordLabel: UILabel!
     var correctCount = 0
     var wrongCount = 0
-    var numberCorrect = 0
+    var numberQuizzed = 1
+   var totalWordsCount = 0
     var categoryName = ""
     var randomNumber = 0
     var chosenCategory : Category? {
@@ -31,11 +32,17 @@ class QuizViewController : UIViewController {
     }
      var correctWordPool = realm.objects(Word.self)
 var wrongWordPool = realm.objects(Word.self)
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-     updateDisplay()
-       
-}
+     
+        updateDisplay()
+    
+        self.navigationController?.navigationBar.tintColor = UIColor.white;
+
+        progressTracker.title = "\(numberQuizzed)/\(totalWordsCount)"
+    }
    
 
     
@@ -43,6 +50,10 @@ var wrongWordPool = realm.objects(Word.self)
     func updateDisplay() {
      randomNumber = Int(arc4random_uniform(3))
  
+        let totalWordsPredicate = NSPredicate(format: "category = %@", categoryName)
+       
+       let totalWords = realm.objects(Word.self).filter(totalWordsPredicate)
+        totalWordsCount = totalWords.count
         
         let predicate = NSPredicate(format: "category = %@ AND hasBeenQuizzed == %@", categoryName, NSNumber(value: false))
         let wrongPredicate = NSPredicate(format: "category = %@ AND isBeingQuizzed == %@", categoryName, NSNumber(value: false))
@@ -53,18 +64,17 @@ var wrongWordPool = realm.objects(Word.self)
         //Picking 3 random (and not repeating)word definitions to display
     correctCount = (correctWordPool.count) - 1
   wrongCount = (wrongWordPool.count) - 1
-        print("word pool count is \(correctCount)")
+//        print("word pool count is \(correctCount)")
   
         (randomIndex1, randomIndex2, randomIndex3) = self.assignRandomIndex(correctCount: correctCount, wrongCount: wrongCount)
-        print("update display random index 1 is \(randomIndex1)")
-     print("update display random index 2 is \(randomIndex2)")
-        print("update display random index 3 is \(randomIndex3)")
+//        print("update display random index 1 is \(randomIndex1)")
+//     print("update display random index 2 is \(randomIndex2)")
+//        print("update display random index 3 is \(randomIndex3)")
         
  (quizWord1, quizWord2, quizWord3) = self.getQuizWords(randomIndex1: randomIndex1, randomIndex2: randomIndex2, randomIndex3: randomIndex3)
     
             self.quizWordLabel.text = quizWord1.title
-      
-        
+
         if quizWord1.definition == "" {
             self.getDefinition(defToFetch: quizWord1, word1: quizWord1, word2: quizWord2, word3: quizWord3, wordTitle: (quizWord1.title), randomIndex: randomIndex1)}
            
@@ -74,9 +84,10 @@ var wrongWordPool = realm.objects(Word.self)
             if quizWord3.definition == "" {
                 self.getDefinition(defToFetch: quizWord3, word1: quizWord1, word2: quizWord2, word3: quizWord3, wordTitle: (quizWord3.title), randomIndex: randomIndex3)}
     
-        setTitles(word1: quizWord1, word2: quizWord2, word3: quizWord3)
+        if quizWord1.definition != "" && quizWord2.definition != "" && quizWord3.definition != "" {
+            setTitles(word1: quizWord1, word2: quizWord2, word3: quizWord3)}
         
-    }
+        }
     
     func getDefinition(defToFetch: Word, word1: Word, word2: Word, word3: Word, wordTitle: String, randomIndex: Int) {
         let word = defToFetch
@@ -101,9 +112,9 @@ var wrongWordPool = realm.objects(Word.self)
                     let data = data,
                     let jsonData = try? JSON(JSONSerialization.jsonObject(with: data, options: .mutableContainers)) {
                     //print(jsonData)
-                    self.parseDefinition(defToParse: word, word1: word1, word2: word2, word3: word3, json: jsonData, randomIndex: randomIndex)
+                    self.parseDefinition(wordToSaveTo: word, word1: word1, word2: word2, word3: word3, json: jsonData, randomIndex: randomIndex)
     } else {
-                                    print(NSString.init(data: data!, encoding: String.Encoding.utf8.rawValue))
+                    
                     print(response)
                     print(error)
                     DispatchQueue.main.sync {
@@ -112,14 +123,24 @@ var wrongWordPool = realm.objects(Word.self)
             }).resume()
         }}
 
-    func parseDefinition(defToParse: Word, word1: Word, word2: Word, word3: Word, json : JSON, randomIndex : Int) {
+    func parseDefinition(wordToSaveTo: Word, word1: Word, word2: Word, word3: Word, json : JSON, randomIndex : Int) {
 let definitionResult = json["results"][0]["lexicalEntries"][0]["entries"][0]["senses"][0]["definitions"]
   DispatchQueue.main.sync {
     if let definitionAsString = definitionResult.rawString() {
+print(definitionAsString)
+        print("definition as string: \(definitionAsString)")
+        let delCharSet1 = NSCharacterSet(charactersIn: "[   \"")
+        let partiallyEditedDefinition = definitionAsString.trimmingCharacters(in: delCharSet1 as CharacterSet)
+        print("edited definition: \(partiallyEditedDefinition)")
+        let delCharSet2 = NSCharacterSet(charactersIn: "\"   ]")
+        let fullyEditedDefinition = partiallyEditedDefinition.trimmingCharacters(in: delCharSet2 as CharacterSet)
+        print("fully edited definition: \(fullyEditedDefinition)")
+
+        
         do{
             try realm.write {
-                defToParse.definition = definitionAsString
-            }
+                wordToSaveTo.definition = fullyEditedDefinition
+               }
         } catch {
             print("error saving definition to realm file\(error)")
         }}
@@ -178,10 +199,10 @@ let definitionResult = json["results"][0]["lexicalEntries"][0]["entries"][0]["se
       
         repeat {
             randomIndex3 = Int(arc4random_uniform(UInt32(wrongCount)))
-        } while randomIndex3 == randomIndex2 
-        print("assignRandomIndex randomindex1 is \(randomIndex1)")
-        print("assignRandomIndex randomindex2 is \(randomIndex2)")
-        print("assignRandomIndex randomindex3 is \(randomIndex3)")
+        } while randomIndex3 == randomIndex2
+//        print("assignRandomIndex randomindex1 is \(randomIndex1)")
+//        print("assignRandomIndex randomindex2 is \(randomIndex2)")
+//        print("assignRandomIndex randomindex3 is \(randomIndex3)")
     return ( randomIndex1, randomIndex2, randomIndex3)
     }
     
@@ -218,8 +239,10 @@ let definitionResult = json["results"][0]["lexicalEntries"][0]["entries"][0]["se
         } catch {
            print("error saving hasBeenQuizzed to realm \(error)")
         }
+        numberQuizzed = (numberQuizzed) + 1
+        progressTracker.title = "\(numberQuizzed)/\(totalWordsCount)"
         updateDisplay()
-      
+//      print(numberQuizzed)
     }
     
     @IBAction func option2pressed(_ sender: UIButton) {
@@ -231,8 +254,10 @@ let definitionResult = json["results"][0]["lexicalEntries"][0]["entries"][0]["se
         } catch {
             print("error saving hasBeenQuizzed to realm \(error)")
         }
+        numberQuizzed = (numberQuizzed) + 1
+        progressTracker.title = "\(numberQuizzed)/\(totalWordsCount)"
         updateDisplay()
-       
+//       print(numberQuizzed)
        
     }
     
@@ -245,8 +270,10 @@ let definitionResult = json["results"][0]["lexicalEntries"][0]["entries"][0]["se
         } catch {
             print("error saving hasBeenQuizzed to realm \(error)")
         }
+        numberQuizzed = (numberQuizzed) + 1
+        progressTracker.title = "\(numberQuizzed)/\(totalWordsCount)"
         updateDisplay()
-        
+//        print(numberQuizzed)
     }
     
     
@@ -257,6 +284,8 @@ let definitionResult = json["results"][0]["lexicalEntries"][0]["entries"][0]["se
     @IBOutlet weak var option3: UIButton!
 
 
-
+    @IBOutlet weak var progressTracker: UIBarButtonItem!
+    
+    
 
 }

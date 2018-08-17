@@ -41,6 +41,7 @@ class ToDoListViewController: SwipeTableViewController{
          super.viewDidLoad()
          tableView.rowHeight = 80.0
         self.navigationController?.isToolbarHidden = false
+        self.navigationController?.navigationBar.tintColor = UIColor.white;
     }
 
     override func didReceiveMemoryWarning() {
@@ -81,10 +82,10 @@ class ToDoListViewController: SwipeTableViewController{
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         var textField = UITextField()
         
-        let alert = UIAlertController(title: "Add New Todey Item", message : "", preferredStyle : .alert)
+        let alert = UIAlertController(title: "Add New Word", message : "", preferredStyle : .alert)
         
-        let action = UIAlertAction(title: "Add Item", style: .default){ (action) in
-            
+        let action = UIAlertAction(title: "Add Word", style: .default){ (action) in
+         
             if let currentCategory = self.selectedCategory{
                 do {
                     try self.realm.write {
@@ -129,6 +130,8 @@ self.tableView.reloadData()
         }
         
         alert.addAction(action)
+     let action2 = UIAlertAction(title: "Cancel", style: .cancel)
+        alert.addAction(action2)
         present(alert, animated: true, completion: nil)
     }
 
@@ -163,21 +166,23 @@ toDoWords = selectedCategory?.words.sorted(byKeyPath: "dateCreated", ascending: 
 
 // MARK: - Search bar Methods
 
-//extension ToDoListViewController: UISearchBarDelegate {
-//    func searchBarSearchButtonClicked1(_ searchBar: UISearchBar) {
-//        toDoWords = toDoWords?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "dateCreated", ascending: true)
-//
-//        tableView.reloadData()
-//
-//    }
-//    func searchBar1(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        if searchBar.text?.count == 0 {
-//            loadWords()
-//
-//            DispatchQueue.main.async {
-//                searchBar.resignFirstResponder()
-//            }
-//        }
-//    }
-//}
+extension ToDoListViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        toDoWords = toDoWords?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "dateCreated", ascending: true)
 
+        tableView.reloadData()
+
+    }
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            loadWords()
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+        
+        }
+    }
+
+}
