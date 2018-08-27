@@ -32,7 +32,13 @@ class QuizViewController : UIViewController {
     }
      var correctWordPool = realm.objects(Word.self)
 var wrongWordPool = realm.objects(Word.self)
-    
+
+    //    var myColor = UIColor(red:0.96, green:0.28, blue:0.28, alpha:1.0)
+  
+    var lightestTeal = UIColor(red: 0.6157, green: 0.9529, blue: 0.7686, alpha: 1)
+    var mediumTeal = UIColor(red: 0.3843, green: 0.8235, blue: 0.6353, alpha: 1)
+    var darkestTeal = UIColor(red: 0.1216, green: 0.6706, blue: 0.5373, alpha: 1)
+  
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -227,11 +233,15 @@ print(definitionAsString)
         
     }
 
+    func resetLabelFormats(){
+        
+    }
+    
     
     //buttons have been pressed!
     
     @IBAction func option1pressed(_ sender: UIButton) {
-        do{
+       do{
             try realm.write {
                 quizWord1.hasBeenQuizzed = true
             quizWord1.isBeingQuizzed = false
@@ -239,14 +249,38 @@ print(definitionAsString)
         } catch {
            print("error saving hasBeenQuizzed to realm \(error)")
         }
-        numberQuizzed = (numberQuizzed) + 1
-        progressTracker.title = "\(numberQuizzed)/\(totalWordsCount)"
-        updateDisplay()
-//      print(numberQuizzed)
-    }
+       
+        if randomNumber == 0{
+            option1.setTitle("Correct!", for: .normal)
+            option1.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 30.0)
+            option1.setTitleColor(lightestTeal, for: .normal)
+            option1.backgroundColor = darkestTeal
+//            button.setTitle("my text here", for: .normal)
+        } else {
+            option1.setTitle("Incorrect!", for: .normal)
+            option1.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 30.0)
+            option1.setTitleColor(lightestTeal, for: .normal)
+            option1.backgroundColor = darkestTeal
+        }
+        UIView.transition(with: option1,
+                          duration: 0.5,
+                          options: .transitionCrossDissolve,
+                          animations: { self.option1.isHighlighted = true },
+                          completion: nil)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.option1.setTitle("", for: .normal)
+            self.option1.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 15.0)
+            self.option1.setTitleColor(self.darkestTeal, for: .normal)
+            self.option1.backgroundColor = UIColor.clear
+            self.numberQuizzed = (self.numberQuizzed) + 1
+            self.progressTracker.title = "\(self.numberQuizzed)/\(self.totalWordsCount)"
+            self.updateDisplay()
+
+        }
+        }
     
     @IBAction func option2pressed(_ sender: UIButton) {
-        do{
+    do{
             try realm.write {
                 quizWord1.hasBeenQuizzed = true
             quizWord1.isBeingQuizzed = false
@@ -254,10 +288,35 @@ print(definitionAsString)
         } catch {
             print("error saving hasBeenQuizzed to realm \(error)")
         }
-        numberQuizzed = (numberQuizzed) + 1
-        progressTracker.title = "\(numberQuizzed)/\(totalWordsCount)"
-        updateDisplay()
-//       print(numberQuizzed)
+       
+        if randomNumber == 1{
+            option2.setTitle("Correct!", for: .normal)
+            option2.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 30.0)
+            option2.setTitleColor(lightestTeal, for: .normal)
+            option2.backgroundColor = darkestTeal
+            //            button.setTitle("my text here", for: .normal)
+        } else {
+            option2.setTitle("Incorrect!", for: .normal)
+            option2.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 30.0)
+            option2.setTitleColor(lightestTeal, for: .normal)
+            option2.backgroundColor = darkestTeal
+        }
+        UIView.transition(with: option2,
+                          duration: 0.5,
+                          options: .transitionCrossDissolve,
+                          animations: { self.option2.isHighlighted = true },
+                          completion: nil)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.option2.setTitle("", for: .normal)
+            self.option2.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 15.0)
+            self.option2.setTitleColor(self.darkestTeal, for: .normal)
+            self.option2.backgroundColor = UIColor.clear
+            self.numberQuizzed = (self.numberQuizzed) + 1
+            self.progressTracker.title = "\(self.numberQuizzed)/\(self.totalWordsCount)"
+            self.updateDisplay()
+            
+        }
        
     }
     
@@ -270,11 +329,41 @@ print(definitionAsString)
         } catch {
             print("error saving hasBeenQuizzed to realm \(error)")
         }
-        numberQuizzed = (numberQuizzed) + 1
-        progressTracker.title = "\(numberQuizzed)/\(totalWordsCount)"
-        updateDisplay()
-//        print(numberQuizzed)
+      
+      
+        if randomNumber == 2{
+            option3.setTitle("Correct!", for: .normal)
+            option3.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 30.0)
+            option3.setTitleColor(lightestTeal, for: .normal)
+            option3.backgroundColor = darkestTeal
+            //            button.setTitle("my text here", for: .normal)
+        } else {
+            option3.setTitle("Incorrect!", for: .normal)
+            option3.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 30.0)
+            option3.setTitleColor(lightestTeal, for: .normal)
+            option3.backgroundColor = darkestTeal
+        }
+        UIView.transition(with: option3,
+                          duration: 0.5,
+                          options: .transitionCrossDissolve,
+                          animations: { self.option3.isHighlighted = true },
+                          completion: nil)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.option3.setTitle("", for: .normal)
+            self.option3.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 15.0)
+            self.option3.setTitleColor(self.darkestTeal, for: .normal)
+            self.option3.backgroundColor = UIColor.clear
+            self.numberQuizzed = (self.numberQuizzed) + 1
+            self.progressTracker.title = "\(self.numberQuizzed)/\(self.totalWordsCount)"
+            self.updateDisplay()
+            
+            
+        }
     }
+    
+    
+    
+    
     
     
     @IBOutlet weak var option1: UIButton!

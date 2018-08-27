@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import SwiftyJSON
 
 class ToDoListViewController: SwipeTableViewController{
    
@@ -87,27 +88,81 @@ class ToDoListViewController: SwipeTableViewController{
         let action = UIAlertAction(title: "Add Word", style: .default){ (action) in
          
             if let currentCategory = self.selectedCategory{
-                do {
-                    try self.realm.write {
+           
                 
-                        let sentence = textField.text
-                        let wordList =  sentence?.components(separatedBy: .punctuationCharacters).joined().components(separatedBy: " ").filter{!$0.isEmpty}
-                        print(wordList?.count)
-                        var numberOfWords = wordList!.count
-                        if numberOfWords == 1 {
-                            
-                            
-                            
-                            
-                            let newWord = Word()
-                            newWord.dateCreated = Date()
-                            newWord.title = textField.text!
-                            currentCategory.words.append(newWord)
-                            newWord.category = currentCategory.name
-                        } else {
-                            
-                           
-        let alert2 = UIAlertController(title: "Oops!", message: "You can only add one word at a time to your list!", preferredStyle : .alert)
+                let entry = textField.text
+                let wordList =  entry?.lowercased().components(separatedBy: .punctuationCharacters).joined().components(separatedBy: " ").filter{!$0.isEmpty}
+                var numberOfWords = wordList!.count
+               
+                if numberOfWords == 1 {
+                   
+                    let appId = "219ad5f4"
+                    let appKey = "6e3ee9bd554aecdf493aebe931043b6b"
+                    let language = "en"
+                    let word_id = entry?.lowercased() //word id is case sensitive and lowercase is required
+                   print(word_id)
+//                  if let url = URL(string: "https://od-api.oxforddictionaries.com:443/api/v1/entries/\(language)/\(word!)")
+                    if let url = URL(string: "https://od-api.oxforddictionaries.com:443/api/v1/inflections/\(language)/\(word_id!)"){
+var request = URLRequest(url: url)
+                                            request.addValue("application/json", forHTTPHeaderField: "Accept")
+                                            request.addValue(appId, forHTTPHeaderField: "app_id")
+                                            request.addValue(appKey, forHTTPHeaderField: "app_key")
+                                            
+                                            let session = URLSession.shared
+                                            _ = session.dataTask(with: request, completionHandler: { data, response, error in
+                                                if let response = response,
+                                                    let data = data,
+                                                    let jsonData = try? JSON(JSONSerialization.jsonObject(with: data, options: .mutableContainers)) {
+                                                    print(response)
+                                                    print(jsonData)
+
+                                                    let inflectedFrom = self.parseInterpretation(json: jsonData, entry: word_id!)
+                                                 print("inflectedFrom is \(inflectedFrom)")
+                                                    
+                                                    DispatchQueue.main.async {
+                                                        
+                                                    
+                                                    do{
+                                                        try self.realm.write {
+                                                            let newWord = Word()
+                                                            newWord.dateCreated = Date()
+                                                            newWord.title = inflectedFrom
+                                                            currentCategory.words.append(newWord)
+                                                            newWord.category = currentCategory.name
+                                                        }
+                                                    } catch {
+                                                      print("error saving inflected word to Realm")
+                                                        }
+                                                        self.tableView.reloadData()
+                                                        
+                                                    }
+                                                } else {
+                                                    print(error)
+                                                    DispatchQueue.main.async {
+                                                        
+                                                        
+                                                        do{
+                                                            try self.realm.write {
+                                                                let newWord = Word()
+                                                                newWord.dateCreated = Date()
+                                                                newWord.title = word_id!
+                                                                currentCategory.words.append(newWord)
+                                                                newWord.category = currentCategory.name
+                                                            }
+                                                        } catch {
+                                                            print("error saving inflected word to Realm")
+                                                        }
+                                                        self.tableView.reloadData()
+                                                        
+                                                    }
+//                                                    print(NSString.init(data: data!, encoding: String.Encoding.utf8.rawValue))
+                                                }
+                                            }).resume()
+                    }
+                                            
+                    
+                    } else {
+                            let alert2 = UIAlertController(title: "Oops!", message: "You can only add one word at a time to your list!", preferredStyle : .alert)
 
                             alert2.addAction(UIAlertAction(title: "Okay!", style: .default, handler: nil))
                             self.present(alert2, animated: true)
@@ -115,13 +170,7 @@ class ToDoListViewController: SwipeTableViewController{
                             
                         }
                         }
-                        
-                    
-                } catch{
-                    print("Error saving new items")
-                }
-            }
-self.tableView.reloadData()
+                        self.tableView.reloadData()
            
         }
         alert.addTextField { (alertTextField) in
@@ -132,8 +181,8 @@ self.tableView.reloadData()
         alert.addAction(action)
      let action2 = UIAlertAction(title: "Cancel", style: .cancel)
         alert.addAction(action2)
-        present(alert, animated: true, completion: nil)
-    }
+        self.present(alert, animated: true, completion: nil)
+        }
 
     // MARK: - Data Manipulation
 
@@ -159,7 +208,14 @@ toDoWords = selectedCategory?.words.sorted(byKeyPath: "dateCreated", ascending: 
     }
 
     
-        
+    // MARK: - Parsing JSON
+    
+    func parseInterpretation(json : JSON, entry: String) -> String {
+
+let interpretation = json["results"][0]["lexicalEntries"][0]["inflectionOf"][0]["id"]
+        let interpretationAsString = interpretation.rawString()
+        return interpretationAsString ?? entry
+       }
     
 }
 
@@ -186,3 +242,6 @@ extension ToDoListViewController: UISearchBarDelegate {
     }
 
 }
+
+
+
