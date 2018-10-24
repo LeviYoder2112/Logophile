@@ -24,7 +24,9 @@ class CategoryViewController: SwipeTableViewController {
     }
     
     
- 
+    @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
+        
+    }
     
     // MARK: - Tableview Datasource Methods
     
@@ -37,7 +39,7 @@ class CategoryViewController: SwipeTableViewController {
        
 let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.textLabel?.text = categories?[indexPath.row].name ?? "No Categories"
-    
+cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 23)
         return cell
     }
     
@@ -126,23 +128,4 @@ textField.placeholder = "Add new category"
 
 
 
-// MARK: - Search bar Methods
-
-//extension ToDoListViewController: UISearchBarDelegate {
-//    func searchBarSearchButtonClicked1(_ searchBar: UISearchBar) {
-//        toDoWords = toDoWords?.filter("title CONTAINS[cd] %@", searchBar.text!).sorted(byKeyPath: "dateCreated", ascending: true)
-//        
-//        tableView.reloadData()
-//        
-//    }
-//    func searchBar1(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        if searchBar.text?.count == 0 {
-//            loadWords()
-//            
-//            DispatchQueue.main.async {
-//                searchBar.resignFirstResponder()
-//            }
-//        }
-//    }
-//}
 

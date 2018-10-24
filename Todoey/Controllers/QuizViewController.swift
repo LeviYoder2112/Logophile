@@ -17,7 +17,6 @@ class QuizViewController : UIViewController {
     var quizWord1 = Word()
     var quizWord2 = Word()
     var quizWord3 = Word()
-    @IBOutlet weak var quizWordLabel: UILabel!
     var correctCount = 0
     var wrongCount = 0
     var numberQuizzed = 1
@@ -28,9 +27,12 @@ class QuizViewController : UIViewController {
         didSet{
             categoryName = (chosenCategory?.name)!
         resetBools()
+            
         }
     }
-     var correctWordPool = realm.objects(Word.self)
+    
+    var wordsGottenWrong = realm.objects(Word.self)
+    var correctWordPool = realm.objects(Word.self)
 var wrongWordPool = realm.objects(Word.self)
 
     //    var myColor = UIColor(red:0.96, green:0.28, blue:0.28, alpha:1.0)
@@ -40,9 +42,16 @@ var wrongWordPool = realm.objects(Word.self)
     var darkestTeal = UIColor(red: 0.1216, green: 0.6706, blue: 0.5373, alpha: 1)
   
     override func viewDidLoad() {
-        
+        resetBools()
         super.viewDidLoad()
-     
+        option1.layer.borderWidth = 1.25
+        option2.layer.borderWidth = 1.25
+        option3.layer.borderWidth = 1.25
+        
+        option1.layer.borderColor = UIColor.white.cgColor
+        option2.layer.borderColor = UIColor.white.cgColor
+        option3.layer.borderColor = UIColor.white.cgColor
+        
         updateDisplay()
     
         self.navigationController?.navigationBar.tintColor = UIColor.white;
@@ -119,13 +128,39 @@ var wrongWordPool = realm.objects(Word.self)
                     let jsonData = try? JSON(JSONSerialization.jsonObject(with: data, options: .mutableContainers)) {
                     //print(jsonData)
                     self.parseDefinition(wordToSaveTo: word, word1: word1, word2: word2, word3: word3, json: jsonData, randomIndex: randomIndex)
-    } else {
+                
                     
-                    print(response)
-                    print(error)
-                    DispatchQueue.main.sync {
-                                   //             self.definitionField.text = "Not able to fetch definition. Check connection, and/or spelling!"
-                    }}
+                   
+                    
+                } else {
+                    
+                        if let httpResponse = response as? HTTPURLResponse {
+                            print("REPONSE STATUS CODE IS \(httpResponse.statusCode)")
+                            if httpResponse.statusCode == 404 {
+                                DispatchQueue.main.async {
+                                    do{
+                                    try realm.write {
+                                    defToFetch.definition = "Can't find a definition for '\(defToFetch.title)'. Check spelling!"
+                                    }
+                                    } catch {
+                                    print("error saving 404 error to word definition")
+                                }
+                                }}
+                            
+                            
+                            DispatchQueue.main.sync {
+                                self.setTitles(word1: word1, word2: word2, word3: word3)
+                            }
+                    
+                    }
+                    
+                    print("response is \(response)")
+                    print("error is \(error)")
+//                    DispatchQueue.main.sync {
+//                                                self.definitionField.text = "Not able to fetch definition. Check connection, and/or spelling!"
+//                    }
+                    
+                }
             }).resume()
         }}
 
@@ -133,16 +168,20 @@ var wrongWordPool = realm.objects(Word.self)
 let definitionResult = json["results"][0]["lexicalEntries"][0]["entries"][0]["senses"][0]["definitions"]
   DispatchQueue.main.sync {
     if let definitionAsString = definitionResult.rawString() {
-print(definitionAsString)
-        print("definition as string: \(definitionAsString)")
+print("definitionasString is \(definitionAsString)")
+//        print("definition as string: \(definitionAsString)")
         let delCharSet1 = NSCharacterSet(charactersIn: "[   \"")
         let partiallyEditedDefinition = definitionAsString.trimmingCharacters(in: delCharSet1 as CharacterSet)
-        print("edited definition: \(partiallyEditedDefinition)")
+//        print("edited definition: \(partiallyEditedDefinition)")
         let delCharSet2 = NSCharacterSet(charactersIn: "\"   ]")
         let fullyEditedDefinition = partiallyEditedDefinition.trimmingCharacters(in: delCharSet2 as CharacterSet)
-        print("fully edited definition: \(fullyEditedDefinition)")
+//        print("fully edited definition: \(fullyEditedDefinition)")
 
-        
+      
+//        if definitionAsString = ! {
+//
+//        }
+    
         do{
             try realm.write {
                 wordToSaveTo.definition = fullyEditedDefinition
@@ -187,9 +226,10 @@ print(definitionAsString)
        let predicate = NSPredicate(format: "category = %@", categoryName)
         do {
             try realm.write {
-                let words = realm.objects(Word.self).filter(predicate)
+            let words = realm.objects(Word.self).filter(predicate)
             words.setValue(false, forKey: "hasBeenQuizzed")
-                words.setValue(false, forKey: "isBeingQuizzed")
+            words.setValue(false, forKey: "isBeingQuizzed")
+            words.setValue(false, forKey: "gottenWrong")
             }} catch{
                 print("unable to update hasBeenQuizzed\(error)")
         }
@@ -249,18 +289,24 @@ print(definitionAsString)
         } catch {
            print("error saving hasBeenQuizzed to realm \(error)")
         }
+        
+        option2.isEnabled = false
+        option1.isEnabled = false
+        option3.isEnabled = false
+        
        
         if randomNumber == 0{
             option1.setTitle("Correct!", for: .normal)
             option1.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 30.0)
-            option1.setTitleColor(lightestTeal, for: .normal)
-            option1.backgroundColor = darkestTeal
+            option1.setTitleColor(darkestTeal, for: .normal)
+            option1.backgroundColor = UIColor.clear
 //            button.setTitle("my text here", for: .normal)
         } else {
+            appendWrongWords(word: quizWord1)
             option1.setTitle("Incorrect!", for: .normal)
             option1.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 30.0)
-            option1.setTitleColor(lightestTeal, for: .normal)
-            option1.backgroundColor = darkestTeal
+            option1.setTitleColor(darkestTeal, for: .normal)
+            option1.backgroundColor = UIColor.clear
         }
         UIView.transition(with: option1,
                           duration: 0.5,
@@ -269,13 +315,23 @@ print(definitionAsString)
                           completion: nil)
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.option1.setTitle("", for: .normal)
-            self.option1.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 15.0)
-            self.option1.setTitleColor(self.darkestTeal, for: .normal)
-            self.option1.backgroundColor = UIColor.clear
-            self.numberQuizzed = (self.numberQuizzed) + 1
+            self.option1.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16.0)
+            self.option1.setTitleColor(UIColor.white, for: .normal)
+            self.option1.backgroundColor = self.darkestTeal
             self.progressTracker.title = "\(self.numberQuizzed)/\(self.totalWordsCount)"
-            self.updateDisplay()
-
+           
+            //Determining if quiz is finished
+            if self.numberQuizzed != self.totalWordsCount{
+                self.numberQuizzed = (self.numberQuizzed) + 1
+                self.updateDisplay()
+                self.option2.isEnabled = true
+                self.option1.isEnabled = true
+                self.option3.isEnabled = true
+                
+            } else {
+            self.performSegue(withIdentifier: "ResultsSegue", sender: self)
+            }
+            self.progressTracker.title = "\(self.numberQuizzed)/\(self.totalWordsCount)"
         }
         }
     
@@ -288,18 +344,23 @@ print(definitionAsString)
         } catch {
             print("error saving hasBeenQuizzed to realm \(error)")
         }
-       
+       option1.isEnabled = false
+        option2.isEnabled = false
+        option3.isEnabled = false
+        
         if randomNumber == 1{
             option2.setTitle("Correct!", for: .normal)
             option2.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 30.0)
-            option2.setTitleColor(lightestTeal, for: .normal)
-            option2.backgroundColor = darkestTeal
+            option2.setTitleColor(darkestTeal, for: .normal)
+            option2.backgroundColor = UIColor.clear
             //            button.setTitle("my text here", for: .normal)
         } else {
+            appendWrongWords(word: quizWord1)
+
             option2.setTitle("Incorrect!", for: .normal)
             option2.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 30.0)
-            option2.setTitleColor(lightestTeal, for: .normal)
-            option2.backgroundColor = darkestTeal
+            option2.setTitleColor(darkestTeal, for: .normal)
+            option2.backgroundColor = UIColor.clear
         }
         UIView.transition(with: option2,
                           duration: 0.5,
@@ -309,12 +370,21 @@ print(definitionAsString)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.option2.setTitle("", for: .normal)
-            self.option2.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 15.0)
-            self.option2.setTitleColor(self.darkestTeal, for: .normal)
-            self.option2.backgroundColor = UIColor.clear
-            self.numberQuizzed = (self.numberQuizzed) + 1
+            self.option2.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16.0)
+            self.option2.setTitleColor(UIColor.white, for: .normal)
+            self.option2.backgroundColor = self.darkestTeal
             self.progressTracker.title = "\(self.numberQuizzed)/\(self.totalWordsCount)"
-            self.updateDisplay()
+            //Determining if quiz is finished
+            if self.numberQuizzed != self.totalWordsCount{
+                self.numberQuizzed = (self.numberQuizzed) + 1
+                self.updateDisplay()
+                self.option2.isEnabled = true
+                self.option1.isEnabled = true
+                self.option3.isEnabled = true
+            } else {
+             self.performSegue(withIdentifier: "ResultsSegue", sender: self)
+            }
+            self.progressTracker.title = "\(self.numberQuizzed)/\(self.totalWordsCount)"
             
         }
        
@@ -329,19 +399,24 @@ print(definitionAsString)
         } catch {
             print("error saving hasBeenQuizzed to realm \(error)")
         }
-      
-      
+      option2.isEnabled = false
+        option1.isEnabled = false
+      option3.isEnabled = false
+        
         if randomNumber == 2{
             option3.setTitle("Correct!", for: .normal)
             option3.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 30.0)
-            option3.setTitleColor(lightestTeal, for: .normal)
-            option3.backgroundColor = darkestTeal
+            option3.setTitleColor(darkestTeal, for: .normal)
+            option3.backgroundColor = UIColor.clear
             //            button.setTitle("my text here", for: .normal)
         } else {
+            
+            appendWrongWords(word: quizWord1)
+
             option3.setTitle("Incorrect!", for: .normal)
             option3.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 30.0)
-            option3.setTitleColor(lightestTeal, for: .normal)
-            option3.backgroundColor = darkestTeal
+            option3.setTitleColor(self.darkestTeal, for: .normal)
+            option3.backgroundColor = UIColor.clear
         }
         UIView.transition(with: option3,
                           duration: 0.5,
@@ -350,21 +425,57 @@ print(definitionAsString)
                           completion: nil)
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.option3.setTitle("", for: .normal)
-            self.option3.titleLabel?.font = UIFont(name: "Helvetica Neue", size: 15.0)
-            self.option3.setTitleColor(self.darkestTeal, for: .normal)
-            self.option3.backgroundColor = UIColor.clear
-            self.numberQuizzed = (self.numberQuizzed) + 1
+            self.option3.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16.0)
+            self.option3.setTitleColor(UIColor.white, for: .normal)
+            self.option3.backgroundColor = self.darkestTeal
+            //Determining if quiz is finished
+            if self.numberQuizzed != self.totalWordsCount{
+                self.numberQuizzed = (self.numberQuizzed) + 1
+                self.updateDisplay()
+                self.option1.isEnabled = true
+                self.option2.isEnabled = true
+                self.option3.isEnabled = true
+            } else {
+           self.performSegue(withIdentifier: "ResultsSegue", sender: self)
+            }
             self.progressTracker.title = "\(self.numberQuizzed)/\(self.totalWordsCount)"
-            self.updateDisplay()
+           }
+      
             
-            
-        }
+       
+    }
+ 
+  
+    
+    //MARK:- SEGUE TO RESULTS
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! ResultsViewController
+
+     destinationVC.categoryName = categoryName
+    destinationVC.totalWordsCount = totalWordsCount
+    destinationVC.wrongWordsCount = wordsGottenWrong.count
     }
     
     
+    //MARK: - APPEND WORDSGOTTENWRONG
     
+    func appendWrongWords(word: Word) {
+        do{
+            try realm.write {
+                word.gottenWrong = true
+            }
+        } catch {
+            print("Error saving wordGottenWrong TRUE to realm.\(error)")
+        }
+        
+        let wordsGottenWrongPredicate = NSPredicate(format:"category = %@ AND gottenWrong == %@", categoryName, NSNumber(value: true))
+        wordsGottenWrong = realm.objects(Word.self).filter(wordsGottenWrongPredicate)
+        
+        print("WORDS GOTTEN WRONG COUNT IS \(wordsGottenWrong.count)")
+    }
     
-    
+    //MARK:- IBOUTLETS
     
     @IBOutlet weak var option1: UIButton!
     
@@ -372,6 +483,7 @@ print(definitionAsString)
     
     @IBOutlet weak var option3: UIButton!
 
+    @IBOutlet weak var quizWordLabel: UILabel!
 
     @IBOutlet weak var progressTracker: UIBarButtonItem!
     

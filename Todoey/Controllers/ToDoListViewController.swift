@@ -13,18 +13,34 @@ import SwiftyJSON
 class ToDoListViewController: SwipeTableViewController{
    
     
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "viewWord" {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {if segue.identifier == "viewWord" {
          let destinationVC = segue.destination as! FlashCardViewController
                     if let indexPath = tableView.indexPathForSelectedRow {
                         destinationVC.selectedWord = toDoWords?[indexPath.row]
                     }
-        } else if segue.identifier == "quizSegue" {
+        } else if segue.identifier == "QuizSegue" {
+        
         let destinationVC = segue.destination as! QuizViewController
         destinationVC.chosenCategory = selectedCategory
-        }}
+                }}
 
+    @IBAction func quizYourselfPressed(_ sender: UIBarButtonItem) {
+        
+        if let count = toDoWords?.count {
+            if count > 2 {
+                print(count)
+                performSegue(withIdentifier: "QuizSegue", sender: self)
+            } else {
+           print(count)
+            print("NO!")
+            let alert = UIAlertController(title: "Oops..", message: "You need at least three words in your category before you can take the quiz!", preferredStyle : .alert)
+            
+            alert.addAction(UIAlertAction(title: "Okay!", style: .default, handler: nil))
+            self.present(alert, animated: true)
+            }}
+        }
+    
+    
     
     let realm = try! Realm()
     
@@ -234,6 +250,7 @@ extension ToDoListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text?.count == 0 {
             loadWords()
+            tableView.reloadData()
             DispatchQueue.main.async {
                 searchBar.resignFirstResponder()
             }
@@ -241,7 +258,11 @@ extension ToDoListViewController: UISearchBarDelegate {
         }
     }
 
+  
+
 }
+
+
 
 
 
