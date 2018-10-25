@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5F940BA3B9E12FB5BEACE0C7 /* Pods_Dictionary_Flash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54255FFC2A1F1F0874FC9A38 /* Pods_Dictionary_Flash.framework */; };
-		DB59088320EAC16200431D04 /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB59088220EAC16200431D04 /* SwipeTableViewController.swift */; };
+		702AA9A9C73BDD759C6C17B3 /* Pods_Dictionary_FlashTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC46DF49BD5EE14FD222D609 /* Pods_Dictionary_FlashTests.framework */; };
+		7F29291A4AAC472BDE08B70C /* Pods_Dictionary_Flash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC4885BB0C7A01E39B685186 /* Pods_Dictionary_Flash.framework */; };
+		914481BB99BA521F776A973E /* Pods_Dictionary_FlashUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9064F42DF5E066FC53783FE /* Pods_Dictionary_FlashUITests.framework */; };
+		DB48D80021821FF2004BF14B /* FlashCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB48D7FF21821FF2004BF14B /* FlashCardViewController.swift */; };
 		DB59088520EC077700431D04 /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB59088420EC077700431D04 /* QuizViewController.swift */; };
 		DB5FC4F12089193B0008D2F1 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5FC4F02089193B0008D2F1 /* Item.swift */; };
 		DB5FC4F3208919420008D2F1 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5FC4F2208919420008D2F1 /* Category.swift */; };
-		DBABAE9520C88AB200D8CFD4 /* FlashCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBABAE9420C88AB200D8CFD4 /* FlashCardViewController.swift */; };
+		DBAAAF4121821EFB00CFF22C /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBAAAF4021821EFB00CFF22C /* SwipeTableViewController.swift */; };
 		DBBEF5CC20868BF5000F2546 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBEF5CB20868BF5000F2546 /* CategoryViewController.swift */; };
 		DBC62179214211820084D5C5 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBC62178214211820084D5C5 /* ResultsViewController.swift */; };
 		DBE3CC1C207BCC6700E7409C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE3CC1B207BCC6700E7409C /* AppDelegate.swift */; };
@@ -22,7 +24,6 @@
 		DBE3CC26207BCC6700E7409C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBE3CC24207BCC6700E7409C /* LaunchScreen.storyboard */; };
 		DBE3CC31207BCC6700E7409C /* TodoeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE3CC30207BCC6700E7409C /* TodoeyTests.swift */; };
 		DBE3CC3C207BCC6700E7409C /* TodoeyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE3CC3B207BCC6700E7409C /* TodoeyUITests.swift */; };
-		EFFD084C1C04D5A6553D05C4 /* Pods_Todoey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 490099FB149965377592074F /* Pods_Todoey.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,17 +44,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1760F199956B171E41F00E35 /* Pods-Todoey.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Todoey.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Todoey/Pods-Todoey.debug.xcconfig"; sourceTree = "<group>"; };
-		490099FB149965377592074F /* Pods_Todoey.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Todoey.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		54255FFC2A1F1F0874FC9A38 /* Pods_Dictionary_Flash.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dictionary_Flash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		76484E777C1270BF22CA18E5 /* Pods-Dictionary Flash.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dictionary Flash.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Dictionary Flash/Pods-Dictionary Flash.debug.xcconfig"; sourceTree = "<group>"; };
-		783D213C665F06879198FC5A /* Pods-Dictionary Flash.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dictionary Flash.release.xcconfig"; path = "Pods/Target Support Files/Pods-Dictionary Flash/Pods-Dictionary Flash.release.xcconfig"; sourceTree = "<group>"; };
-		AA5B803F9071FF569E4EE2A9 /* Pods-Todoey.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Todoey.release.xcconfig"; path = "Pods/Target Support Files/Pods-Todoey/Pods-Todoey.release.xcconfig"; sourceTree = "<group>"; };
-		DB59088220EAC16200431D04 /* SwipeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
+		0CB1A999238E9A1D8644EACF /* Pods-Dictionary Flash.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dictionary Flash.release.xcconfig"; path = "Pods/Target Support Files/Pods-Dictionary Flash/Pods-Dictionary Flash.release.xcconfig"; sourceTree = "<group>"; };
+		0F90A6ACC6FC35B8854EF120 /* Pods-Dictionary FlashTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dictionary FlashTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Dictionary FlashTests/Pods-Dictionary FlashTests.release.xcconfig"; sourceTree = "<group>"; };
+		2E0C76A6A972DF473C9C0D50 /* Pods-Dictionary FlashUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dictionary FlashUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Dictionary FlashUITests/Pods-Dictionary FlashUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		379B5AD21A1A824080F8FE8D /* Pods-Dictionary Flash.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dictionary Flash.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Dictionary Flash/Pods-Dictionary Flash.debug.xcconfig"; sourceTree = "<group>"; };
+		88F2E6A795ACF9E9F6A0A2E6 /* Pods-Dictionary FlashTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dictionary FlashTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Dictionary FlashTests/Pods-Dictionary FlashTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B0216B927928965B03F2F61A /* Pods-Dictionary FlashUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dictionary FlashUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Dictionary FlashUITests/Pods-Dictionary FlashUITests.release.xcconfig"; sourceTree = "<group>"; };
+		BC46DF49BD5EE14FD222D609 /* Pods_Dictionary_FlashTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dictionary_FlashTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB48D7FF21821FF2004BF14B /* FlashCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashCardViewController.swift; sourceTree = "<group>"; };
 		DB59088420EC077700431D04 /* QuizViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizViewController.swift; sourceTree = "<group>"; };
 		DB5FC4F02089193B0008D2F1 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		DB5FC4F2208919420008D2F1 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
-		DBABAE9420C88AB200D8CFD4 /* FlashCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlashCardViewController.swift; sourceTree = "<group>"; };
+		DBAAAF4021821EFB00CFF22C /* SwipeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
 		DBBEF5CB20868BF5000F2546 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		DBC62178214211820084D5C5 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		DBE3CC18207BCC6700E7409C /* Dictionary Flash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dictionary Flash.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -69,6 +71,8 @@
 		DBE3CC37207BCC6700E7409C /* Dictionary FlashUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Dictionary FlashUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBE3CC3B207BCC6700E7409C /* TodoeyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoeyUITests.swift; sourceTree = "<group>"; };
 		DBE3CC3D207BCC6700E7409C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9064F42DF5E066FC53783FE /* Pods_Dictionary_FlashUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dictionary_FlashUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC4885BB0C7A01E39B685186 /* Pods_Dictionary_Flash.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dictionary_Flash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,8 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EFFD084C1C04D5A6553D05C4 /* Pods_Todoey.framework in Frameworks */,
-				5F940BA3B9E12FB5BEACE0C7 /* Pods_Dictionary_Flash.framework in Frameworks */,
+				7F29291A4AAC472BDE08B70C /* Pods_Dictionary_Flash.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				702AA9A9C73BDD759C6C17B3 /* Pods_Dictionary_FlashTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,28 +96,32 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				914481BB99BA521F776A973E /* Pods_Dictionary_FlashUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		87CF5F52BB368FD1B8550542 /* Frameworks */ = {
+		43C2C10FE439F0085BCEC4B9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				490099FB149965377592074F /* Pods_Todoey.framework */,
-				54255FFC2A1F1F0874FC9A38 /* Pods_Dictionary_Flash.framework */,
+				FC4885BB0C7A01E39B685186 /* Pods_Dictionary_Flash.framework */,
+				BC46DF49BD5EE14FD222D609 /* Pods_Dictionary_FlashTests.framework */,
+				F9064F42DF5E066FC53783FE /* Pods_Dictionary_FlashUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A1461F72E43C9AFCB2C33E66 /* Pods */ = {
+		5DC1EF6CA619A79104BBF4DA /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1760F199956B171E41F00E35 /* Pods-Todoey.debug.xcconfig */,
-				AA5B803F9071FF569E4EE2A9 /* Pods-Todoey.release.xcconfig */,
-				76484E777C1270BF22CA18E5 /* Pods-Dictionary Flash.debug.xcconfig */,
-				783D213C665F06879198FC5A /* Pods-Dictionary Flash.release.xcconfig */,
+				379B5AD21A1A824080F8FE8D /* Pods-Dictionary Flash.debug.xcconfig */,
+				0CB1A999238E9A1D8644EACF /* Pods-Dictionary Flash.release.xcconfig */,
+				88F2E6A795ACF9E9F6A0A2E6 /* Pods-Dictionary FlashTests.debug.xcconfig */,
+				0F90A6ACC6FC35B8854EF120 /* Pods-Dictionary FlashTests.release.xcconfig */,
+				2E0C76A6A972DF473C9C0D50 /* Pods-Dictionary FlashUITests.debug.xcconfig */,
+				B0216B927928965B03F2F61A /* Pods-Dictionary FlashUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -121,12 +129,12 @@
 		DBBEF5CD20868C15000F2546 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				DB59088220EAC16200431D04 /* SwipeTableViewController.swift */,
 				DBBEF5CB20868BF5000F2546 /* CategoryViewController.swift */,
 				DBE3CC1D207BCC6700E7409C /* ToDoListViewController.swift */,
-				DBABAE9420C88AB200D8CFD4 /* FlashCardViewController.swift */,
 				DB59088420EC077700431D04 /* QuizViewController.swift */,
+				DB48D7FF21821FF2004BF14B /* FlashCardViewController.swift */,
 				DBC62178214211820084D5C5 /* ResultsViewController.swift */,
+				DBAAAF4021821EFB00CFF22C /* SwipeTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -138,8 +146,8 @@
 				DBE3CC2F207BCC6700E7409C /* TodoeyTests */,
 				DBE3CC3A207BCC6700E7409C /* TodoeyUITests */,
 				DBE3CC19207BCC6700E7409C /* Products */,
-				A1461F72E43C9AFCB2C33E66 /* Pods */,
-				87CF5F52BB368FD1B8550542 /* Frameworks */,
+				5DC1EF6CA619A79104BBF4DA /* Pods */,
+				43C2C10FE439F0085BCEC4B9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -218,11 +226,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DBE3CC40207BCC6700E7409C /* Build configuration list for PBXNativeTarget "Dictionary Flash" */;
 			buildPhases = (
-				B57664B32A754AD5DA1F7B27 /* [CP] Check Pods Manifest.lock */,
+				A451643FD36BBF0C10020F91 /* [CP] Check Pods Manifest.lock */,
 				DBE3CC14207BCC6700E7409C /* Sources */,
 				DBE3CC15207BCC6700E7409C /* Frameworks */,
 				DBE3CC16207BCC6700E7409C /* Resources */,
-				05B4B19DC0E8688E7DBC4918 /* [CP] Embed Pods Frameworks */,
+				90AF80D19CB62D392698B682 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -237,6 +245,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DBE3CC43207BCC6700E7409C /* Build configuration list for PBXNativeTarget "Dictionary FlashTests" */;
 			buildPhases = (
+				1B5FC263369221525EA7CA77 /* [CP] Check Pods Manifest.lock */,
 				DBE3CC28207BCC6700E7409C /* Sources */,
 				DBE3CC29207BCC6700E7409C /* Frameworks */,
 				DBE3CC2A207BCC6700E7409C /* Resources */,
@@ -255,6 +264,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DBE3CC46207BCC6700E7409C /* Build configuration list for PBXNativeTarget "Dictionary FlashUITests" */;
 			buildPhases = (
+				61A06C2380F4FA1C48F73FF6 /* [CP] Check Pods Manifest.lock */,
 				DBE3CC33207BCC6700E7409C /* Sources */,
 				DBE3CC34207BCC6700E7409C /* Frameworks */,
 				DBE3CC35207BCC6700E7409C /* Resources */,
@@ -343,10 +353,56 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		05B4B19DC0E8688E7DBC4918 /* [CP] Embed Pods Frameworks */ = {
+		1B5FC263369221525EA7CA77 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Dictionary FlashTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		61A06C2380F4FA1C48F73FF6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Dictionary FlashUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		90AF80D19CB62D392698B682 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Dictionary Flash/Pods-Dictionary Flash-frameworks.sh",
@@ -356,6 +412,8 @@
 				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
@@ -367,16 +425,20 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Dictionary Flash/Pods-Dictionary Flash-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B57664B32A754AD5DA1F7B27 /* [CP] Check Pods Manifest.lock */ = {
+		A451643FD36BBF0C10020F91 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Dictionary Flash-checkManifestLockResult.txt",
 			);
@@ -392,13 +454,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBAAAF4121821EFB00CFF22C /* SwipeTableViewController.swift in Sources */,
 				DB5FC4F12089193B0008D2F1 /* Item.swift in Sources */,
 				DBBEF5CC20868BF5000F2546 /* CategoryViewController.swift in Sources */,
+				DB48D80021821FF2004BF14B /* FlashCardViewController.swift in Sources */,
 				DBE3CC1E207BCC6700E7409C /* ToDoListViewController.swift in Sources */,
 				DB59088520EC077700431D04 /* QuizViewController.swift in Sources */,
-				DB59088320EAC16200431D04 /* SwipeTableViewController.swift in Sources */,
 				DBC62179214211820084D5C5 /* ResultsViewController.swift in Sources */,
-				DBABAE9520C88AB200D8CFD4 /* FlashCardViewController.swift in Sources */,
 				DBE3CC1C207BCC6700E7409C /* AppDelegate.swift in Sources */,
 				DB5FC4F3208919420008D2F1 /* Category.swift in Sources */,
 			);
@@ -507,7 +569,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -569,7 +631,7 @@
 		};
 		DBE3CC41207BCC6700E7409C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 76484E777C1270BF22CA18E5 /* Pods-Dictionary Flash.debug.xcconfig */;
+			baseConfigurationReference = 379B5AD21A1A824080F8FE8D /* Pods-Dictionary Flash.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -579,6 +641,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.LeviYoder.Dictionary-Flash";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -588,7 +651,7 @@
 		};
 		DBE3CC42207BCC6700E7409C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 783D213C665F06879198FC5A /* Pods-Dictionary Flash.release.xcconfig */;
+			baseConfigurationReference = 0CB1A999238E9A1D8644EACF /* Pods-Dictionary Flash.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -607,6 +670,7 @@
 		};
 		DBE3CC44207BCC6700E7409C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 88F2E6A795ACF9E9F6A0A2E6 /* Pods-Dictionary FlashTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -627,6 +691,7 @@
 		};
 		DBE3CC45207BCC6700E7409C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0F90A6ACC6FC35B8854EF120 /* Pods-Dictionary FlashTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -647,6 +712,7 @@
 		};
 		DBE3CC47207BCC6700E7409C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2E0C76A6A972DF473C9C0D50 /* Pods-Dictionary FlashUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -666,6 +732,7 @@
 		};
 		DBE3CC48207BCC6700E7409C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B0216B927928965B03F2F61A /* Pods-Dictionary FlashUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

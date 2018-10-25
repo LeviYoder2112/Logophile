@@ -92,7 +92,7 @@ cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 23)
                                 print("Error deleting category, \(error)")
                             }
         
-                            tableView.reloadData()
+//                            tableView.reloadData()
         
                         }
     }

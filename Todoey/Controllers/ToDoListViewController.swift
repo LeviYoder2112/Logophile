@@ -16,7 +16,7 @@ class ToDoListViewController: SwipeTableViewController{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {if segue.identifier == "viewWord" {
          let destinationVC = segue.destination as! FlashCardViewController
                     if let indexPath = tableView.indexPathForSelectedRow {
-                        destinationVC.selectedWord = toDoWords?[indexPath.row]
+//                        destinationVC.selectedWord = toDoWords?[indexPath.row]
                     }
         } else if segue.identifier == "QuizSegue" {
         
@@ -218,7 +218,7 @@ toDoWords = selectedCategory?.words.sorted(byKeyPath: "dateCreated", ascending: 
                 print("Error deleting category, \(error)")
             }
             
-            tableView.reloadData()
+//            tableView.reloadData()
             
         }
     }
