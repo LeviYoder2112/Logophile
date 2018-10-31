@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Todoey
+
 
 class TodoeyTests: XCTestCase {
     

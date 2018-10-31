@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import SwiftyJSON
+import AVFoundation
 
 class FlashCardViewController : UIViewController {
 
@@ -124,13 +125,27 @@ func hitAPI(wordToFind : Word){
             }
         
         }
+        }
+    func play(url:String) {
+        var player: AVPlayer!
+        if let url1  = URL.init(string: url){
+        print(url1)
+        let playerItem: AVPlayerItem = AVPlayerItem(url: url1)
+        player = AVPlayer(playerItem: playerItem)
         
+        let playerLayer = AVPlayerLayer(player: player!)
         
-        
-        
-        
-        
+        playerLayer.frame = CGRect(x: 0, y: 0, width: 10, height: 50)
+        self.view.layer.addSublayer(playerLayer)
+        player.play()
+        }
+}
+    
+    @IBAction func hearPronunciationPressed(_ sender: UIBarButtonItem) {
+        play(url: chosenWord.pronunciationURL)
     }
     
-
 }
+
+
+
