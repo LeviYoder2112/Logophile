@@ -13,12 +13,13 @@ class Word: Object {
     
     @objc dynamic var title: String = ""
     @objc dynamic var dateCreated: Date?
-    @objc dynamic var timesCorrect: Int = 0
     @objc dynamic var definition: String = ""
   @objc dynamic var category: String = ""
     @objc dynamic var hasBeenQuizzed : Bool = false
     @objc dynamic var isBeingQuizzed : Bool = false
     @objc dynamic var gottenWrong : Bool = false
+    @objc dynamic var pronunciationURL : String = ""
+    
     var parentCategory = LinkingObjects(fromType: Category.self, property: "words")
     
 }

@@ -255,8 +255,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="K7K-Wp-lIA"/>
                     <connections>
-                        <outlet property="definitionField" destination="f5b-hn-2n9" id="KqK-NU-kR7"/>
-                        <outlet property="label" destination="nef-9t-xgw" id="Kkf-6k-9J2"/>
+                        <outlet property="definitionField" destination="f5b-hn-2n9" id="PGC-rN-9ag"/>
+                        <outlet property="wordTitleLabel" destination="nef-9t-xgw" id="CEW-VT-ORJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2lQ-fG-eRP" userLabel="First Responder" sceneMemberID="firstResponder"/>

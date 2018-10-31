@@ -16,8 +16,9 @@ class ToDoListViewController: SwipeTableViewController{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {if segue.identifier == "viewWord" {
          let destinationVC = segue.destination as! FlashCardViewController
                     if let indexPath = tableView.indexPathForSelectedRow {
-//                        destinationVC.selectedWord = toDoWords?[indexPath.row]
-                    }
+                        if let selectedWord = toDoWords?[indexPath.row]{
+                        destinationVC.chosenWord = selectedWord
+                        }}
         } else if segue.identifier == "QuizSegue" {
         
         let destinationVC = segue.destination as! QuizViewController

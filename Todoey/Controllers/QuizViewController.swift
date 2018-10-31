@@ -112,7 +112,6 @@ var wrongWordPool = realm.objects(Word.self)
         let appId = "219ad5f4"
         let appKey = "6e3ee9bd554aecdf493aebe931043b6b"
         let language = "en"
-        let word_id = wordTitle.lowercased()
     if let url = URL(string: "https://od-api.oxforddictionaries.com:443/api/v1/entries/\(language)/\(wordTitle)"){
         
             
