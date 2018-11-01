@@ -312,7 +312,7 @@ print("definitionasString is \(definitionAsString)")
                           options: .transitionCrossDissolve,
                           animations: { self.option1.isHighlighted = true },
                           completion: nil)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.option1.setTitle("", for: .normal)
             self.option1.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16.0)
             self.option1.setTitleColor(UIColor.white, for: .normal)
@@ -367,7 +367,7 @@ print("definitionasString is \(definitionAsString)")
                           animations: { self.option2.isHighlighted = true },
                           completion: nil)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.option2.setTitle("", for: .normal)
             self.option2.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16.0)
             self.option2.setTitleColor(UIColor.white, for: .normal)
@@ -422,7 +422,7 @@ print("definitionasString is \(definitionAsString)")
                           options: .transitionCrossDissolve,
                           animations: { self.option3.isHighlighted = true },
                           completion: nil)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.option3.setTitle("", for: .normal)
             self.option3.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16.0)
             self.option3.setTitleColor(UIColor.white, for: .normal)

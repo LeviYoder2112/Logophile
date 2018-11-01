@@ -78,8 +78,8 @@ func hitAPI(wordToFind : Word){
                     
                     
         DispatchQueue.main.sync {
-            self.definitionField.text = "Not able to fetch definition. Check connection, and/or spelling!"
-        }
+            self.definitionField.text = "Can't find a definition for '\(wordTitle)'. Check spelling!"
+             self.wordTitleLabel.text = self.chosenWord.title       }
                     
                 }
             }).resume()
@@ -138,12 +138,19 @@ func hitAPI(wordToFind : Word){
         playerLayer.frame = CGRect(x: 0, y: 0, width: 10, height: 50)
         self.view.layer.addSublayer(playerLayer)
         player.play()
+        } else {
+            let alert = UIAlertController(title: "Oops..", message: "Unable to find the pronunciation for '\(chosenWord.title)'", preferredStyle : .alert)
+            
+            alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+            self.present(alert, animated: true)
         }
 }
     
     @IBAction func hearPronunciationPressed(_ sender: UIBarButtonItem) {
         play(url: chosenWord.pronunciationURL)
     }
+   
+    
     
 }
 
