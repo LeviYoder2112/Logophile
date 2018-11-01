@@ -22,8 +22,8 @@
 		DBE3CC21207BCC6700E7409C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBE3CC1F207BCC6700E7409C /* Main.storyboard */; };
 		DBE3CC23207BCC6700E7409C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DBE3CC22207BCC6700E7409C /* Assets.xcassets */; };
 		DBE3CC26207BCC6700E7409C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DBE3CC24207BCC6700E7409C /* LaunchScreen.storyboard */; };
-		DBE3CC31207BCC6700E7409C /* TodoeyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE3CC30207BCC6700E7409C /* TodoeyTests.swift */; };
-		DBE3CC3C207BCC6700E7409C /* TodoeyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE3CC3B207BCC6700E7409C /* TodoeyUITests.swift */; };
+		DBE3CC31207BCC6700E7409C /* Dictionary FlashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE3CC30207BCC6700E7409C /* Dictionary FlashTests.swift */; };
+		DBE3CC3C207BCC6700E7409C /* Dictionary FlashUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBE3CC3B207BCC6700E7409C /* Dictionary FlashUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,10 +66,10 @@
 		DBE3CC25207BCC6700E7409C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DBE3CC27207BCC6700E7409C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBE3CC2C207BCC6700E7409C /* Dictionary FlashTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Dictionary FlashTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DBE3CC30207BCC6700E7409C /* TodoeyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoeyTests.swift; sourceTree = "<group>"; };
+		DBE3CC30207BCC6700E7409C /* Dictionary FlashTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary FlashTests.swift"; sourceTree = "<group>"; };
 		DBE3CC32207BCC6700E7409C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBE3CC37207BCC6700E7409C /* Dictionary FlashUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Dictionary FlashUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DBE3CC3B207BCC6700E7409C /* TodoeyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoeyUITests.swift; sourceTree = "<group>"; };
+		DBE3CC3B207BCC6700E7409C /* Dictionary FlashUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary FlashUITests.swift"; sourceTree = "<group>"; };
 		DBE3CC3D207BCC6700E7409C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F9064F42DF5E066FC53783FE /* Pods_Dictionary_FlashUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dictionary_FlashUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC4885BB0C7A01E39B685186 /* Pods_Dictionary_Flash.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dictionary_Flash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,8 +143,8 @@
 			isa = PBXGroup;
 			children = (
 				DBE3CC1A207BCC6700E7409C /* Dictionary Flash */,
-				DBE3CC2F207BCC6700E7409C /* TodoeyTests */,
-				DBE3CC3A207BCC6700E7409C /* TodoeyUITests */,
+				DBE3CC2F207BCC6700E7409C /* Dictionary FlashTests */,
+				DBE3CC3A207BCC6700E7409C /* Dictionary FlashUITests */,
 				DBE3CC19207BCC6700E7409C /* Products */,
 				5DC1EF6CA619A79104BBF4DA /* Pods */,
 				43C2C10FE439F0085BCEC4B9 /* Frameworks */,
@@ -175,22 +175,22 @@
 			path = Todoey;
 			sourceTree = "<group>";
 		};
-		DBE3CC2F207BCC6700E7409C /* TodoeyTests */ = {
+		DBE3CC2F207BCC6700E7409C /* Dictionary FlashTests */ = {
 			isa = PBXGroup;
 			children = (
-				DBE3CC30207BCC6700E7409C /* TodoeyTests.swift */,
+				DBE3CC30207BCC6700E7409C /* Dictionary FlashTests.swift */,
 				DBE3CC32207BCC6700E7409C /* Info.plist */,
 			);
-			path = TodoeyTests;
+			path = "Dictionary FlashTests";
 			sourceTree = "<group>";
 		};
-		DBE3CC3A207BCC6700E7409C /* TodoeyUITests */ = {
+		DBE3CC3A207BCC6700E7409C /* Dictionary FlashUITests */ = {
 			isa = PBXGroup;
 			children = (
-				DBE3CC3B207BCC6700E7409C /* TodoeyUITests.swift */,
+				DBE3CC3B207BCC6700E7409C /* Dictionary FlashUITests.swift */,
 				DBE3CC3D207BCC6700E7409C /* Info.plist */,
 			);
-			path = TodoeyUITests;
+			path = "Dictionary FlashUITests";
 			sourceTree = "<group>";
 		};
 		DBE3CC4C207C3A5C00E7409C /* Data Model */ = {
@@ -470,7 +470,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBE3CC31207BCC6700E7409C /* TodoeyTests.swift in Sources */,
+				DBE3CC31207BCC6700E7409C /* Dictionary FlashTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,7 +478,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DBE3CC3C207BCC6700E7409C /* TodoeyUITests.swift in Sources */,
+				DBE3CC3C207BCC6700E7409C /* Dictionary FlashUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
